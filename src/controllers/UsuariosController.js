@@ -13,7 +13,6 @@ const crearUsuario = async (req, res) => {
         if (!errores.isEmpty()) {
             return res.status(400).json({ status: false, response: errores.array(), msg: "Error en los datos de entrada" });
         }
-        debugger;
         const { perfil, nombres, apellidos } = req.usuario;
         //Valido perfil
         if (perfil === Constants.TIPOS_USUARIOS.ADMIN) {

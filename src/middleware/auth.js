@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
                 const usuario = jwt.verify(token, Constants.SECRETA);
                 req.usuario = usuario;
             } catch (error) {
-                return res.status(403).json({ status: false, response: usuario, msg: "Acceso no autorizado o sesión caducada." });
+                return res.status(403).json({ status: false, response: {}, msg: "Acceso no autorizado o sesión caducada." });
             }
         } else {
             return res.status(403).json({ status: false, response: {}, msg: "Acceso no autorizado." });

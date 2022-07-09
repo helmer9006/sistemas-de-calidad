@@ -5,8 +5,8 @@ const cors = require("cors");
 const app = express();
 
 // Habilitar leer los valores de un body
-app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
 
 //permitir cors
 const opcionesCors = {
@@ -18,11 +18,14 @@ app.use(cors(opcionesCors));
 const port = process.env.PORT || 4000;
 
 // Rutas de la app
-app.use("/api/usuarios", require("./routes/usuarios"));
+app.use("/api/usuarios", require("./src/routes/usuarios"));
 // app.use("/api/protocolos", require("./routes/protocolos"));
-app.use("/api/auth", require("./routes/auth"));
-app.use("/api/areas", require("./routes/areas"));
-app.use("/api/usuarios-log", require("./routes/usuarios_log"));
+app.use("/api/auth", require("./src/routes/auth"));
+app.use("/api/areas", require("./src/routes/areas"));
+app.use("/api/especialidades", require("./src/routes/especialidades"));
+app.use("/api/usuarios-log", require("./src/routes/usuarios_log"));
+app.use("/api/protocolos", require("./src/routes/protocolos"));
+app.use("/api/documentos", require("./src/routes/documentos"));
 app.use("/public", express.static(`${__dirname}/uploads`)); // Habilitar carpeta publica
 
 // Arrancar la app

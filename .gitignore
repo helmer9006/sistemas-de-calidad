@@ -9,6 +9,7 @@ node_modules/*
 public/documents/*
 dist/*
 public/
+uploads/*
 .env
 *.pre
 *.dev

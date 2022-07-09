@@ -12,6 +12,15 @@ const crearArea = async (req, res) => {
             return res.status(400).json({ status: false, response: errores.array(), msg: "Error en los datos de entrada" });
         }
 
+        //valdiar si existe el area
+        const areaExistente = await modeloAreas.findOne({
+            where: { nombre: req.body.nombre }
+        });
+        console.log("areaExistente", areaExistente);
+        if (areaExistente) {
+            return res.json({ status: false, response: {}, msg: "El área ya existe." });
+        }
+
         const { perfil, nombres, apellidos } = req.usuario;
         //Valido perfil
         if (perfil === Constants.TIPOS_USUARIOS.ESTANDAR) {
