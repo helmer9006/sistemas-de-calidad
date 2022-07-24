@@ -108,13 +108,21 @@ const actualizarUsuario = async (req, res) => {
             if (req.body.foto) {
                 req.body.foto = req.urlFoto;
             }
+            console.log("req.usuario.foto", req.usuario)
             const fotoUsuario = await modeloUsuarios.findOne({ where: { id: req.params.id }, attributes: ['foto'] });
-            if (!req.usuario.foto || fotoUsuario.foto != req.urlFoto) {
-                const fotoEliminadoUrl = fotoUsuario.foto.split("/")[5];
-                const directorio = fotoUsuario.foto.split("/")[4];
-                const ruta = path.join(__dirname, `./../../uploads/${directorio}/${fotoEliminadoUrl}`);
-                await Utils.eliminarArchivo(ruta);
+            if (!req.body.foto) {
+                req.body.foto = fotoUsuario.foto;
+            } else {
+                if (fotoUsuario.foto != req.urlFoto) {
+                    const fotoEliminadoUrl = fotoUsuario.foto.split("/")[5];
+                    const directorio = fotoUsuario.foto.split("/")[4];
+                    const ruta = path.join(__dirname, `./../../uploads/${directorio}/${fotoEliminadoUrl}`);
+                    await Utils.eliminarArchivo(ruta);
+                    req.body.foto = req.urlFoto;
+                }
             }
+
+            console.log("req.body, ", req.body)
             const usuarioActualizado = await modeloUsuarios.update(req.body, { where: { id: req.params.id } });
             if (usuarioActualizado == 0) {
                 return res.json({ status: false, response: {}, msg: "usuario no actualizado" });
