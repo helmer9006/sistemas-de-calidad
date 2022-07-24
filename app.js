@@ -1,18 +1,19 @@
 const express = require("express");
 const cors = require("cors");
-
+const { Constants } = require("./src/constants/Constants");
 // crear el servidor
 const app = express();
 
 // Habilitar leer los valores de un body
-app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+app.use(express.json({ limit: "100mb" }));
+app.use(express.urlencoded({limit: "100mb",  extended: true }));
 
 //permitir cors
 const opcionesCors = {
-    origin: process.env.FRONTEND_URL,
+    origin: Constants.APP_FRONTEND_URL
 };
-app.use(cors(opcionesCors));
+// app.use(cors(opcionesCors));
+app.use(cors());
 
 // Puerto de la app
 const port = process.env.PORT || 4000;

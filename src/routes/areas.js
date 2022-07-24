@@ -12,7 +12,9 @@ router.post('/crear', auth,
     ]
     , areasController.crearArea);
 router.get('/traertodas', auth, areasController.traerAreas);
+router.get('/traerAreasPorUsuario/', auth, areasController.traerAreasPorUsuario);
 router.put('/actualizar/:id', auth, areasController.actualizarArea);
 router.delete('/eliminar/:id', auth, areasController.eliminarArea);
+
 
 module.exports = router;

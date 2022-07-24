@@ -11,12 +11,13 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             Usuarios.belongsTo(models.Areas, {
-                foreignKey: 'id',
-                target_key: 'idArea'
+                foreignKey: 'idArea',
+                target_key: 'id'
             });
             Usuarios.belongsTo(models.Especialidades, {
-                foreignKey: 'id',
-                target_key: 'idEspecialidad'
+                foreignKey: 'idEspecialidad',
+                target_key: 'id',
+                as: 'Especialidad'
             });
 
             Usuarios.hasMany(models.Usuarios_log, {

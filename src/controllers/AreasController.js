@@ -43,7 +43,7 @@ const traerAreas = async (req, res) => {
     console.log("GET - TRAER TODAS LAS ÁREAS");
     try {
         const areas = await modeloAreas.findAll();
-        res.json({ status: true, response: areas, msg: "Áreas traerdas correctamente" });
+        res.json({ status: true, response: areas, msg: "Áreas encontradas correctamente" });
     } catch (error) {
         console.log(error);
         res.status(500).json({ status: false, response: {}, msg: "Error al traer las áreas" });
@@ -102,9 +102,25 @@ const eliminarArea = async (req, res) => {
     }
 }
 
+const traerAreasPorUsuario = async (req, res) => {
+    console.log("GET - TRAER TODAS LAS ÁREAS");
+    const { idArea } = req.usuario;
+    const filter = idArea == 0 ? {} : { id: idArea };
+    try {
+        const areas = await modeloAreas.findAll({
+            where: filter
+        });
+        res.json({ status: true, response: areas, msg: "Áreas encontradas correctamente" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ status: false, response: {}, msg: "Error al traer las áreas" });
+    }
+}
+
 module.exports = {
     crearArea,
     traerAreas,
     actualizarArea,
-    eliminarArea
+    eliminarArea,
+    traerAreasPorUsuario
 }

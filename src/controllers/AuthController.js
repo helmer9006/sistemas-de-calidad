@@ -26,6 +26,10 @@ exports.autenticarUsuario = async (req, res, next) => {
         return res.status(401).json({ status: false, response: usuario, msg: "El Usuario no existe" });
     }
 
+    if (usuario?.estado == false) {
+        return res.status(401).json({ status: false, response: usuario, msg: "El Usuario está deshabilitado" });
+    }
+
     // Verificar el password y autenticar el usuario
 
     if (bcrypt.compareSync(clave, usuario.clave)) {
@@ -40,10 +44,13 @@ exports.autenticarUsuario = async (req, res, next) => {
                 estado: usuario.estado,
                 createdAt: usuario.createdAt,
                 updatedAt: usuario.updatedAt,
+                idArea: usuario.idArea,
+                idEspecialidad: usuario.idEspecialidad,
                 tipoDoc: usuario.tipoIdentificacion,
                 documento: usuario.identificacion,
                 fechaNacimiento: usuario.fechaNacimiento,
                 celular: usuario.celular,
+                foto: usuario.foto,
             },
             Constants.SECRETA,
             {
@@ -55,7 +62,11 @@ exports.autenticarUsuario = async (req, res, next) => {
             idUsuario: usuario.id,
             descripcion: "Ingreso al sistema"
         });
-        res.json({ status: true, response: { token: token }, msg: "Usuario logueado correctamente." });
+        res.json({
+            status: true,
+            response: { usuarioId: usuario.id, token: token, perfil: usuario.perfil, nombre: `${usuario.nombres} ${usuario.apellidos}`, foto: usuario.foto, idArea: usuario.idArea, idEspecialidad: usuario.idEspecialidad },
+            msg: "Usuario logueado correctamente."
+        });
     } else {
         res.status(401).json({ status: true, response: null, msg: "Correo o clave incorrecto" });
         return next();

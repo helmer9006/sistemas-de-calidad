@@ -11,17 +11,19 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            Protocolos.belongsTo(models.Areas, {
-                foreignKey: 'id',
-                target_key: 'idArea'
-            });
             Protocolos.belongsTo(models.Especialidades, {
-                foreignKey: 'id',
-                target_key: 'idEspecialidad'
+                as: 'Especialidad',
+                foreignKey: 'idEspecialidad',
+                target_key: 'id'
             });
             Protocolos.belongsTo(models.Usuarios, {
-                foreignKey: 'id',
-                target_key: 'creadoPor'
+                foreignKey: 'creadoPor',
+                target_key: 'id'
+            });
+
+            Protocolos.belongsTo(models.Areas, {
+                foreignKey: 'idArea',
+                target_key: 'id'
             });
         }
     }

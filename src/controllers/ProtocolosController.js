@@ -128,20 +128,34 @@ const eliminarProtocolo = async (req, res) => {
 const traerProtocolos = async (req, res) => {
     try {
         console.log("GET - TRAER PROTOCOLOS");
+        //filtrar por area, especialidad, valor/palabra busqueda
+        const idArea = req.params.idArea ? parseInt(req.params.idArea) : 0;
+        const idEspecialidad = req.params.idEspecialidad ? parseInt(req.params.idEspecialidad) : 0;
+        const busqueda = req.params.busqueda ? req.params.busqueda : "empty";
+        let filter = {};
         debugger;
-        //filtrar por are, especialidad, valor/palabra busqueda
-        const filter = { idArea: parseInt(req.params.idArea), idEspecialidad: parseInt(req.params.idEspecialidad) }
-        if (req.params.busqueda !== "empty") {
-            filter.nombre = { [Op.like]: `%${req.params.busqueda.toLowerCase()}%` }
+        if (idArea && idEspecialidad) {
+            filter = { idArea, idEspecialidad };
+        } else if (!idArea && !idEspecialidad) {
+            filter = {};
+        }
+        else if (!idArea) {
+            filter = { idEspecialidad };
+        } else {
+            filter = { idArea };
+        }
+
+        if (busqueda !== "empty") {
+            filter.nombre = { [Op.like]: `%${busqueda.toLowerCase()}%` }
         }
         const protocolos = await modeloProtocolos.findAll({
-            attributes: ['id', 'nombre', 'idEspecialidad', 'idArea', 'url', 'creadoPor', 'createdAt', 'updatedAt'],
             order: [['createdAt', 'DESC']],
             where: filter,
             include: [{
                 model: modeloUsuarios,
             }, {
                 model: modeloEspecialidades,
+                as: 'Especialidad',
             }, {
                 model: modeloAreas,
             }]
