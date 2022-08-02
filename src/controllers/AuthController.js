@@ -64,7 +64,22 @@ exports.autenticarUsuario = async (req, res, next) => {
         });
         res.json({
             status: true,
-            response: { usuarioId: usuario.id, token: token, perfil: usuario.perfil, nombre: `${usuario.nombres} ${usuario.apellidos}`, foto: usuario.foto, idArea: usuario.idArea, idEspecialidad: usuario.idEspecialidad },
+            response: { 
+                usuarioId: usuario.id, 
+                token: token, 
+                perfil: usuario.perfil, 
+                nombre: `${usuario.nombres} ${usuario.apellidos}`, 
+                foto: usuario.foto, 
+                idArea: usuario.idArea, 
+                idEspecialidad: usuario.idEspecialidad,
+                fechaNacimiento: usuario.fechaNacimiento,
+                celular: usuario.celular,
+                tipoDoc: usuario.tipoIdentificacion,
+                documento: usuario.documento,
+                correo: usuario.correo,
+                estado: usuario.estado,
+                createdAt: usuario.createdAt
+             },
             msg: "Usuario logueado correctamente."
         });
     } else {

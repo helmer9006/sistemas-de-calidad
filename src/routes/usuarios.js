@@ -9,6 +9,7 @@ const createFoto = require("../utils/crearFoto");
 router.get("/traertodos", auth, usuariosController.traerUsuarios);
 router.get("/traer/:id", auth, usuariosController.traerUsuarioxId);
 router.get("/cambiarestado/:id", auth, usuariosController.cambiarEstado);
+router.get("/traerPorNombre/:text?", auth, usuariosController.buscarUsuarioPorNombre);
 router.post("/crear",
     auth,
     createFoto,
@@ -33,5 +34,10 @@ router.put("/cambiarclave/", auth,
         check('idUsuario', 'El id del usuario es obligatorio').not().isEmpty().isNumeric(),
 
     ], usuariosController.cambiarClave);
+    router.put("/cambiarfoto/", auth,
+    [
+        check('foto', 'La foto no puede estar vacía.').isLength({ min: 6 }),
+        check('idUsuario', 'El id del usuario es obligatorio').not().isEmpty().isNumeric(),
+    ], usuariosController.cambiarFoto);
 
 module.exports = router;

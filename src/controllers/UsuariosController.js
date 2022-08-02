@@ -218,6 +218,59 @@ const cambiarEstado = async (req, res) => {
         res.status(500).json({ status: false, response: [], msg: "Error al cambiar estado" });
     }
 }
+
+const cambiarFoto = async (req, res) => {
+    try {
+        const { idUsuario, foto } = req.body;
+
+        const usuarioActualizado = await modeloUsuarios.update({ foto: foto }, { where: { id: idUsuario } });
+
+        if (usuarioActualizado == 0) {
+            return res.json({ status: false, response: {}, msg: "La foto no se ha actualizado" });
+        }
+        res.json({ status: true, response: usuarioActualizado, msg: "La foto se ha actualizado correctamente." });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ status: false, response: [], msg: "Error al cambiar foto" });
+    }
+
+}
+
+const buscarUsuarioPorNombre = async (req, res) => {
+    try {
+        const text = req.params.text;
+        if (!req.params.text) {
+            return res.json({
+                status: true,
+                msg: "Lista de usuarios.",
+                response: []
+            });
+        }
+        const usuarios = await modeloUsuarios.findAll({
+            where: {
+                [Op.or]: {
+                    nombres: { [Op.like]: `%${text}%` },
+                    apellidos: { [Op.like]: `%${text}%` }
+                },
+            },
+            limit: 12
+        });
+
+        res.json
+            ({
+                status: true,
+                mgs: "Lista de usuarios.",
+                response: usuarios
+            });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ status: false, response: [], msg: "Error al buscar usuario" });
+    }
+
+};
+
 module.exports = {
     crearUsuario,
     traerUsuarios,
@@ -225,5 +278,7 @@ module.exports = {
     traerUsuarioxId,
     eliminarUsuario,
     cambiarClave,
-    cambiarEstado
+    cambiarEstado,
+    cambiarFoto,
+    buscarUsuarioPorNombre
 };

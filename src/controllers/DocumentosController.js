@@ -7,7 +7,7 @@ const cargarDocumento = async (req, res) => {
     if (!req.nombreDocumento) {
         return res.status(400).json({ status: false, response: {}, msg: "Error al cargar documento." });
     }
-    res.json({ stattus: true, response: { url: `${Constants.URL_SERVIDOR}${req.params.tipoDocumento}/${req.nombreDocumento}` }, msg: "Se cargó correctamente el documento." });
+    res.json({ status: true, response: { url: `${Constants.URL_SERVIDOR}${req.params.tipoDocumento}/${req.nombreDocumento}` }, msg: "Se cargó correctamente el documento." });
 }
 
 module.exports = {

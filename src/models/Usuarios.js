@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         celular: DataTypes.STRING,
         clave: DataTypes.STRING,
         perfil: DataTypes.STRING,
-        estado: DataTypes.INTEGER,
+        estado: { type: DataTypes.INTEGER, defaultValue: 1},
         idArea: DataTypes.INTEGER,
         idEspecialidad: DataTypes.INTEGER,
         foto: DataTypes.STRING
