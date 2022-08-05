@@ -10,6 +10,7 @@ router.get("/traertodos", auth, usuariosController.traerUsuarios);
 router.get("/traer/:id", auth, usuariosController.traerUsuarioxId);
 router.get("/cambiarestado/:id", auth, usuariosController.cambiarEstado);
 router.get("/traerPorNombre/:text?", auth, usuariosController.buscarUsuarioPorNombre);
+router.get("/cumples", auth, usuariosController.cumpleañeros);
 router.post("/crear",
     auth,
     createFoto,

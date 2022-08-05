@@ -7,6 +7,7 @@ const { Op } = require("sequelize");
 const { Constants } = require("../constants/Constants");
 const path = require('path');
 const Utils = require("../utils/general");
+const {sequelize} = require('../models');
 
 const crearUsuario = async (req, res) => {
     console.log("POST - CREAR USUARIO");
@@ -271,6 +272,23 @@ const buscarUsuarioPorNombre = async (req, res) => {
 
 };
 
+const cumpleañeros = async (req, res) => {
+    try {
+        const cumpleañeros = await modeloUsuarios.sequelize.query("SELECT CONCAT(nombres, ' ', apellidos) as 'nombreCompleto', id, foto, fechaNacimiento, concat_ws( '-',year(curdate()) + if( (month(fechaNacimiento),day(fechaNacimiento)) < (month(curdate()),day(curdate())),1, 0 ), month(fechaNacimiento), day(fechaNacimiento)) AS 'FechaCumple' FROM usuarios WHERE estado = 1 ORDER BY 5 ASC LIMIT 6;");
+        if(cumpleañeros.length == 0){
+            return res.json({
+                status: true,
+                msg: "No hay cumpleañeros.",
+                response: []
+            });
+        }
+       return res.json({ status: true, msg: "Lista de cumpleañeros.", response: cumpleañeros }); 
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ status: false, response: [], msg: "Error al buscar cumpleañeros" });
+    }
+}
+
 module.exports = {
     crearUsuario,
     traerUsuarios,
@@ -280,5 +298,6 @@ module.exports = {
     cambiarClave,
     cambiarEstado,
     cambiarFoto,
-    buscarUsuarioPorNombre
+    buscarUsuarioPorNombre,
+    cumpleañeros
 };
