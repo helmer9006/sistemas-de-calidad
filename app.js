@@ -6,7 +6,7 @@ const app = express();
 
 // Habilitar leer los valores de un body
 app.use(express.json({ limit: "100mb" }));
-app.use(express.urlencoded({limit: "100mb",  extended: true }));
+app.use(express.urlencoded({ limit: "100mb", extended: true }));
 
 //permitir cors
 const opcionesCors = {
@@ -27,6 +27,8 @@ app.use("/api/especialidades", require("./src/routes/especialidades"));
 app.use("/api/usuarios-log", require("./src/routes/usuarios_log"));
 app.use("/api/protocolos", require("./src/routes/protocolos"));
 app.use("/api/documentos", require("./src/routes/documentos"));
+app.use("/api/infografia", require("./src/routes/infografia"));
+app.use("/api/dataInicial", require("./src/routes/init"));
 app.use("/public", express.static(`${__dirname}/uploads`)); // Habilitar carpeta publica
 
 // Arrancar la app
