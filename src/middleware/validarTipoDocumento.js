@@ -1,9 +1,9 @@
 
 const { Constants } = require("../constants/Constants");
-module.exports = (req, res, next) => {
+module.exports = (req, file, res, next) => {
     console.log("VALIDA - TIPO DE DOCUMENTO");
     const tipo = req.params.tipoDocumento;
-
+    //se valida si viene un formato permitido
     const validacion = [
         Constants.TIPOS_DOCUMENTOS_CARGUE.IMAGENES,
         Constants.TIPOS_DOCUMENTOS_CARGUE.PDF].includes(tipo.trim());

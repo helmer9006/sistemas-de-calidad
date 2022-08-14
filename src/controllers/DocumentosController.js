@@ -1,7 +1,9 @@
 
 const { Constants } = require("../constants/Constants");
-const uploadDoc = require("../utils/uploadDoc");
+
+
 const cargarDocumento = async (req, res) => {
+    debugger;
     //tipoDocumento puede ser pdf o imagenes que son las carpetas que existen en uploads
     console.log("POST - CARGAR DOCUMENTO");
     if (!req.nombreDocumento) {
