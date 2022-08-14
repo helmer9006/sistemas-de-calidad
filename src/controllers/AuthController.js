@@ -64,13 +64,13 @@ exports.autenticarUsuario = async (req, res, next) => {
         });
         res.json({
             status: true,
-            response: { 
-                usuarioId: usuario.id, 
-                token: token, 
-                perfil: usuario.perfil, 
-                nombre: `${usuario.nombres} ${usuario.apellidos}`, 
-                foto: usuario.foto, 
-                idArea: usuario.idArea, 
+            response: {
+                usuarioId: usuario.id,
+                token: token,
+                perfil: usuario.perfil,
+                nombre: `${usuario.nombres} ${usuario.apellidos}`,
+                foto: usuario.foto,
+                idArea: usuario.idArea,
                 idEspecialidad: usuario.idEspecialidad,
                 fechaNacimiento: usuario.fechaNacimiento,
                 celular: usuario.celular,
@@ -79,11 +79,11 @@ exports.autenticarUsuario = async (req, res, next) => {
                 correo: usuario.correo,
                 estado: usuario.estado,
                 createdAt: usuario.createdAt
-             },
+            },
             msg: "Usuario logueado correctamente."
         });
     } else {
-        res.status(401).json({ status: true, response: null, msg: "Correo o clave incorrecto" });
+        res.status(401).json({ status: false, response: null, msg: "Correo o clave incorrecto" });
         return next();
     }
 };
@@ -91,3 +91,14 @@ exports.autenticarUsuario = async (req, res, next) => {
 exports.usuarioAutenticado = (req, res, next) => {
     res.json({ usuario: req.usuario });
 };
+
+exports.logout = async (req, res, next) => {
+    const usuario = req.usuario;
+    //crear registro de log de usuarios_logs
+    await modeloUsuariosLogs.create({
+        idUsuario: usuario.id,
+        descripcion: "Salida del sistema"
+    });
+
+    res.json({ status: true, msg: "Usuario deslogueado correctamente." });
+}

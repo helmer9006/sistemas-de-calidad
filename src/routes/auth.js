@@ -13,6 +13,7 @@ router.post('/',
     authController.autenticarUsuario
 );
 
+router.get('/logout', auth, authController.logout);
 
 router.get('/',
     auth,
