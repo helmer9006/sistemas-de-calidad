@@ -128,9 +128,9 @@ const eliminarProtocolo = async (req, res) => {
 const traerProtocolos = async (req, res) => {
     try {
         console.log("GET - TRAER PROTOCOLOS");
-        //filtrar por area, especialidad, valor/palabra busqueda
-        const idArea = req.params.idArea ? parseInt(req.params.idArea) : 0;
-        const idEspecialidad = req.params.idEspecialidad ? parseInt(req.params.idEspecialidad) : 0;
+        //filtrar por area, especialidad, valor/palabra busqueda sino viene el dato se filtra por id 1 - todas
+        const idArea = req.params.idArea ? parseInt(req.params.idArea) : 1;
+        const idEspecialidad = req.params.idEspecialidad ? parseInt(req.params.idEspecialidad) : 1;
         const busqueda = req.params.busqueda ? req.params.busqueda : "empty";
         let filter = {};
         debugger;
