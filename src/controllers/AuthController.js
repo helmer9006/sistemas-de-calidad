@@ -100,5 +100,5 @@ exports.logout = async (req, res, next) => {
         descripcion: "Salida del sistema"
     });
 
-    res.json({ status: true, msg: "Usuario deslogueado correctamente." });
+    res.json({ status: true, msg: "Sesión finalizada correctamente." });
 }

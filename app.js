@@ -29,6 +29,7 @@ app.use("/api/protocolos", require("./src/routes/protocolos"));
 app.use("/api/documentos", require("./src/routes/documentos"));
 app.use("/api/infografia", require("./src/routes/infografia"));
 app.use("/api/dataInicial", require("./src/routes/init"));
+app.use("/api/logout", require("./src/routes/auth"));
 app.use("/public", express.static(`${__dirname}/uploads`)); // Habilitar carpeta publica
 
 // Arrancar la app
