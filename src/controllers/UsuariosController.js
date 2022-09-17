@@ -274,7 +274,7 @@ const buscarUsuarioPorNombre = async (req, res) => {
 
 const cumpleañeros = async (req, res) => {
     try {
-        const cumpleañeros = await modeloUsuarios.sequelize.query("SELECT CONCAT(nombres, ' ', apellidos) as 'nombreCompleto', id, foto, fechaNacimiento, concat_ws( '-',year(curdate()) + if( (month(fechaNacimiento),day(fechaNacimiento)) < (month(curdate()),day(curdate())),1, 0 ), month(fechaNacimiento), day(fechaNacimiento)) AS 'FechaCumple' FROM usuarios WHERE estado = 1 ORDER BY 5 ASC LIMIT 6;");
+        const cumpleañeros = await modeloUsuarios.sequelize.query("SELECT CONCAT(nombres, ' ', apellidos) as 'nombreCompleto', id, foto, fechaNacimiento, concat_ws( '-',year(curdate()) + if( (month(fechaNacimiento),day(fechaNacimiento)) < (month(curdate()),day(curdate())),1, 0 ), month(fechaNacimiento), day(fechaNacimiento)) AS 'FechaCumple' FROM Usuarios WHERE estado = 1 ORDER BY 5 ASC LIMIT 6;");
         if(cumpleañeros.length == 0){
             return res.json({
                 status: true,
