@@ -3,21 +3,21 @@
     "username": "root",
     "password": "abcd1234",
     "database": "protocolos_ucm",
-    "host": "localhost",
+    "host": "ucm",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "abcd1234",
     "database": "protocolos_ucm",
-    "host": "localhost",
+    "host": "ucm",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": "abcd1234",
     "database": "protocolos_ucm",
-    "host": "localhost",
+    "host": "ucm",
     "dialect": "mysql"
   }
 }

@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
-const protocolosController = require("../controllers/protocolosController");
-
+const protocolosController = require("../controllers/ProtocolosController");
 const { check } = require("express-validator");
 const { Router } = require("express");
 // const crearFoto = require('../utils/crearFoto');
