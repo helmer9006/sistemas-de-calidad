@@ -6,10 +6,7 @@
     "scripts": {
         "startDev": "nodemon start ./app.js",
         "startDeb": "node --inspect app.js",
-        "start": "node ./app.js",
-        "createDB": "npx sequelize-cli db:create",
-        "migrateDB": "npx sequelize-cli db:migrate",
-        "migrateSeeders": "npx sequelize-cli db:seed:all"
+        "start": "node ./app.js"
     },
     "keywords": [],
     "author": "",

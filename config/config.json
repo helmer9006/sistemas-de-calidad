@@ -3,21 +3,24 @@
     "username": "root",
     "password": "abcd1234",
     "database": "protocolos_ucm",
-    "host": "ucm",
-    "dialect": "mysql"
+    "host": "mysql",
+    "dialect": "mysql",
+    "port": "3306"
   },
   "test": {
     "username": "root",
     "password": "abcd1234",
     "database": "protocolos_ucm",
-    "host": "ucm",
-    "dialect": "mysql"
+    "host": "mysql",
+    "dialect": "mysql",
+    "port": "3306"
   },
   "production": {
     "username": "root",
     "password": "abcd1234",
     "database": "protocolos_ucm",
-    "host": "ucm",
-    "dialect": "mysql"
+    "host": "mysql",
+    "dialect": "mysql",
+    "port": "3306"
   }
 }

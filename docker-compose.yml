@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    ports:
+      - "4000:4000"
+    links:
+      - mysql
+  mysql:
+    image: mysql:latest
+    ports: 
+      - "3306:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: abcd1234
+        MYSQL_DATABASE: protocolos_ucm
