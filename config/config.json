@@ -3,7 +3,7 @@
     "username": "root",
     "password": "abcd1234",
     "database": "protocolos_ucm",
-    "host": "mysql",
+    "host": "localhost",
     "dialect": "mysql",
     "port": "3306"
   },
