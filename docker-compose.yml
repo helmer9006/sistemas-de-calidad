@@ -6,6 +6,8 @@ services:
       - "4000:4000"
     links:
       - mysql
+    volumes:
+    - "api_data:/app"
   mysql:
     image: mysql:latest
     ports: 
@@ -15,6 +17,6 @@ services:
         MYSQL_DATABASE: protocolos_ucm
     volumes:
     - "mysql_data:/var/lib/mysql"
-      
 volumes:
   mysql_data:
+  api_data:

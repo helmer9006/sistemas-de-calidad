@@ -3,9 +3,11 @@
     "username": "root",
     "password": "abcd1234",
     "database": "protocolos_ucm",
-    "host": "localhost",
+    "host": "mysql",
     "dialect": "mysql",
-    "port": "3306"
+    "port": "3306",
+    "logging": false,
+    "timezone":"-05:00"
   },
   "test": {
     "username": "root",
@@ -13,7 +15,9 @@
     "database": "protocolos_ucm",
     "host": "mysql",
     "dialect": "mysql",
-    "port": "3306"
+    "port": "3306",
+    "logging": false,
+    "timezone":"-05:00"
   },
   "production": {
     "username": "root",
@@ -21,6 +25,8 @@
     "database": "protocolos_ucm",
     "host": "mysql",
     "dialect": "mysql",
-    "port": "3306"
+    "port": "3306",
+    "logging": false,
+    "timezone":"-05:00"
   }
 }

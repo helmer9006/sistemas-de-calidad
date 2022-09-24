@@ -6,8 +6,8 @@ exports.Constants = {
         ESPECIAL: "especial",
     },
     APP_PORT: process.env.APP_PORT || 4000,
-    APP_HOST: process.env.APP_HOST || "http://localhost",
-    APP_FRONTEND_URL: process.env.APP_FRONTEND_URL,
+    APP_HOST: process.env.APP_HOST || "192.168.1.6",
+    APP_FRONTEND_URL: process.env.APP_FRONTEND_URL || "http://192.168.1.6:4102",
     SECRETA: process.env.SECRETA,
     URL_SERVIDOR: `${process.env.APP_HOST}:${process.env.APP_PORT}/public/`,
     TIPOS_DOCUMENTOS_CARGUE: {
