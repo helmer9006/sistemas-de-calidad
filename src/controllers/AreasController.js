@@ -105,7 +105,7 @@ const eliminarArea = async (req, res) => {
 const traerAreasPorUsuario = async (req, res) => {
     console.log("GET - TRAER TODAS LAS ÁREAS");
     const { idArea } = req.usuario;
-    const filter = idArea == 0 ? {} : { id: idArea };
+    const filter = idArea == 1 ? {} : { id: idArea }; //id de área 1 equivale a todas
     try {
         const areas = await modeloAreas.findAll({
             where: filter
