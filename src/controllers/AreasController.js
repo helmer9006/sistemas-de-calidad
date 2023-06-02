@@ -38,6 +38,10 @@ const crearArea = async (req, res) => {
         msg: `Acceso no autorizado, el usuario ${nombres} ${apellidos} con perfil ${perfil} no tiene autorización para crear un área`,
       });
     }
+    const { padreId } = req.body
+    if (padreId == '') {
+      req.body.padreId = null
+    }
     const areaCreada = await modeloAreas.create(req.body);
     if (!areaCreada) {
       return res.json({
@@ -85,6 +89,10 @@ const actualizarArea = async (req, res) => {
         response: {},
         msg: `Acceso no autorizado, el usuario ${nombres} ${apellidos} con perfil ${perfil} no tiene autorización para actualizar un área`,
       });
+    }
+    const { padreId } = req.body
+    if (padreId == '') {
+      req.body.padreId = null
     }
     const areaActualizada = await modeloAreas.update(req.body, {
       where: {
